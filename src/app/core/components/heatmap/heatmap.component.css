@@ -1,0 +1,10 @@
+@import 'ol/ol.css';
+
+:host {
+  display: block;
+}
+
+.mapContainer {
+  display: block;
+  height: 100%;
+}
