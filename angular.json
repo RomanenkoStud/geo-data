@@ -91,7 +91,13 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/geo-data/",
+            "repo": "https://github.com/RomanenkoStud/geo-data.git",
+            "name": "RomanenkoStud",
+            "email": "vlm.9v.romanenko.pavlo@gmail.com"
+          }
         }
       }
     }
