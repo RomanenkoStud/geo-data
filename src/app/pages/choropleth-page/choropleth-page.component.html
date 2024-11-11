@@ -1,0 +1,26 @@
+<div class="choropleth-controls">
+  <h2>Choropleth Demo Controls</h2>
+
+  <label for="featureName">Feature Name:</label>
+  <input id="featureName" [(ngModel)]="featureName" type="text" placeholder="Enter feature name"/>
+
+  <label for="labelProperty">Label Property:</label>
+  <input id="labelProperty" [(ngModel)]="labelProperty" type="text" placeholder="Enter label property"/>
+
+  <label for="colorMap">Color map:</label>
+  <textarea id="colorMap" [(ngModel)]="colorMapString" (ngModelChange)="onColorMapChange()"  type="text" placeholder="Enter color map"></textarea>
+
+  <select id="dataset" [(ngModel)]="selected" (change)="onFetchData()">
+    @for(option of EXAMPLES; track option) {
+      <option [value]="option">{{ option }}</option>
+    }
+  </select>
+</div>
+
+<app-choropleth
+  [data]="data"
+  [style]="{height: '500px'}"
+  [colorMap]="colorMap"
+  [featureName]="featureName"
+  [labelProperty]="labelProperty"
+/>

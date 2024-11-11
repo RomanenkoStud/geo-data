@@ -1,7 +1,9 @@
 <main class="main">
   <div class="content">
-    <app-heatmap [data]="data" [style]="{height: '500px'}"/>
+    <nav class="menu">
+      <a class="menu-item" [routerLink]="['/choropleth']">choropleth</a>
+      <a class="menu-item" [routerLink]="['/heatmap']">heatmap</a>
+    </nav>
+    <router-outlet />
   </div>
 </main>
-
-<router-outlet />

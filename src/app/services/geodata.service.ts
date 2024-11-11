@@ -7,9 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class GeodataService {
   http = inject(HttpClient);
-  endpointUrl = "/data/example";
+  exampleEndpointUrl = "/data/example";
 
-  getGeoJsonData(name: "trees" | "earthquake"): Observable<any> {
-    return this.http.get(`${this.endpointUrl}/${name}.geojson`);
+  getExampleGeoJsonData(name: "trees" | "earthquake" | "age"): Observable<any> {
+    return this.getGeoJsonData(`${this.exampleEndpointUrl}/${name}.geojson`);
+  }
+
+  getGeoJsonData(url: string): Observable<any> {
+    return this.http.get(url);
   }
 }

@@ -1,0 +1,22 @@
+<div class="choropleth-controls">
+  <h2>Heatmap Demo Controls</h2>
+
+  <label for="blur">Blur:</label>
+  <input id="blur" [(ngModel)]="blur" type="range"/>
+
+  <label for="radius">Radius:</label>
+  <input id="radius" [(ngModel)]="radius" type="range"/>
+
+  <select id="dataset" [(ngModel)]="selected" (change)="onFetchData()">
+    @for(option of EXAMPLES; track option) {
+      <option [value]="option">{{ option }}</option>
+    }
+  </select>
+</div>
+
+<app-heatmap
+  [data]="data"
+  [style]="{height: '500px'}"
+  [blur]="blur"
+  [radius]="radius"
+/>
