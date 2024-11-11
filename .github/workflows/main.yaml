@@ -21,7 +21,7 @@ jobs:
         run: npm run build
       - name: Deploy to gh pages
         run: |
-          npm run ng -- deploy --repo="https://github.com/RomanenkoStud/geo-data.git" --base-href=/geo-data/ --name=RomanenkoStud --email=vlm.9v.romanenko.pavlo@gmail.com
+          npm run ng deploy --repo="https://github.com/RomanenkoStud/geo-data.git" --base-href=/geo-data/ --name=RomanenkoStud
         env:
           CI: true
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
