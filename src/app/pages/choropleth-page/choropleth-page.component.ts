@@ -2,17 +2,16 @@ import { Component, inject } from '@angular/core';
 import { GeodataService } from '../../services/geodata.service';
 import { ChoroplethComponent } from '../../core/components/choropleth/choropleth.component';
 import { FormsModule } from '@angular/forms';
+import { DemoLayoutComponent } from '../../layouts/demo-layout/demo-layout.component';
 
 @Component({
   selector: 'app-choropleth-page',
   standalone: true,
-  imports: [ChoroplethComponent, FormsModule],
+  imports: [ChoroplethComponent, FormsModule, DemoLayoutComponent],
   templateUrl: './choropleth-page.component.html',
   styleUrl: './choropleth-page.component.css'
 })
 export class ChoroplethPageComponent {
-  private readonly EXAMPLE_NAME = 'age';
-
   dataService = inject(GeodataService);
   data?: Object;
 

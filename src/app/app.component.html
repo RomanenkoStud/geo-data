@@ -1,9 +1,19 @@
-<main class="main">
-  <div class="content">
-    <nav class="menu">
-      <a class="menu-item" [routerLink]="['/choropleth']">choropleth</a>
-      <a class="menu-item" [routerLink]="['/heatmap']">heatmap</a>
+<main class="flex flex-col items-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-5xl bg-white p-6">
+    <nav class="flex justify-center gap-4 mb-6">
+      <a
+        class="menu-item px-4 py-2 text-lg font-semibold text-blue-600 hover:bg-blue-600 hover:text-white rounded transition"
+        [routerLink]="['/choropleth']"
+        routerLinkActive="active"
+        >Choropleth</a
+      >
+      <a
+        class="menu-item px-4 py-2 text-lg font-semibold text-blue-600 hover:bg-blue-600 hover:text-white rounded transition"
+        [routerLink]="['/heatmap']"
+        routerLinkActive="active"
+        >Heatmap</a
+      >
     </nav>
-    <router-outlet />
+    <router-outlet></router-outlet>
   </div>
 </main>

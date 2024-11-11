@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { GeodataService } from '../../services/geodata.service';
 import { HeatmapComponent } from '../../core/components/heatmap/heatmap.component';
 import { FormsModule } from '@angular/forms';
+import { DemoLayoutComponent } from '../../layouts/demo-layout/demo-layout.component';
 
 @Component({
   selector: 'app-heatmap-page',
   standalone: true,
-  imports: [HeatmapComponent, FormsModule],
+  imports: [HeatmapComponent, FormsModule, DemoLayoutComponent],
   templateUrl: './heatmap-page.component.html',
   styleUrl: './heatmap-page.component.css'
 })

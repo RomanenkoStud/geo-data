@@ -1,3 +1,7 @@
 .menu .menu-item {
   display: block;
 }
+
+.active {
+  @apply bg-blue-600 text-white;
+}
