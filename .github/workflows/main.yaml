@@ -19,13 +19,9 @@ jobs:
         run: npm install
       - name: Build Angular App
         run: npm run build
-      - name: Configure git author identity
-        run: |
-          git config --global user.name "RomanenkoStud"
-          git config --global user.email "vlm.9v.romanenko.pavlo@gmail.com"
       - name: Deploy to gh pages
         run: |
-          npm run ng deploy --repo="https://github.com/RomanenkoStud/geo-data.git" --base-href=/geo-data/ --name=RomanenkoStud --email=vlm.9v.romanenko.pavlo@gmail.com
+          npm run ng deploy --repo="https://github.com/RomanenkoStud/geo-data.git" --base-href="/geo-data/" --name=RomanenkoStud --email=vlm.9v.romanenko.pavlo@gmail.com
         env:
           CI: true
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
