@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # GitHub pages
 
-ng build --configuration production --base-href https://github.com/RomanenkoStud/geo-data/
+ng build --configuration production --base-href https://romanenkostud.github.io/geo-data/
