@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Adding Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Install Dependencies
@@ -21,7 +21,7 @@ jobs:
         run: npm run build
       - name: Deploy to gh pages
         run: |
-          npx angular-cli-ghpages --dir=dist/geo-data
+          npm run ng -- deploy --repo="https://github.com/RomanenkoStud/geo-data.git" --base-href=/geo-data/ --name=RomanenkoStud --email=vlm.9v.romanenko.pavlo@gmail.com
         env:
           CI: true
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
