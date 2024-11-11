@@ -11,7 +11,7 @@ export class GeodataService {
   exampleEndpointUrl: string;
 
   constructor(location:Location) {
-    this.exampleEndpointUrl = location.prepareExternalUrl("/data/example");
+    this.exampleEndpointUrl = location.prepareExternalUrl("data/example");
   }
 
   getExampleGeoJsonData(name: "trees" | "earthquake" | "age"): Observable<any> {
