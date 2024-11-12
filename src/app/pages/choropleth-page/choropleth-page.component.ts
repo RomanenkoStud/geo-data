@@ -12,7 +12,7 @@ type Options = {
   zoom: number
 }
 
-const DEFAULT_VALUES: Record<("age"), Options> = {
+const DEFAULT_VALUES: Record<("age" | "us-states"), Options> = {
   "age": {
     featureName: 'age',
     labelProperty: 'NAME_ENGL',
@@ -27,6 +27,22 @@ const DEFAULT_VALUES: Record<("age"), Options> = {
     },
     center: [15, 47],
     zoom: 3
+  },
+  "us-states": {
+    featureName: 'DENSITY',
+    labelProperty: 'STATE_NAME',
+    colorMap: {
+      0: "#FFEDA0",
+      10: "#FED976",
+      20: "#FEB24C",
+      50: "#FD8D3C",
+      100: "#FC4E2A",
+      200: "#E31A1C",
+      500: "#BD0026",
+      1000: "#800026",
+    },
+    center: [-100, 37],
+    zoom: 3.5
   },
 };
 
@@ -56,8 +72,9 @@ export class ChoroplethPageComponent {
     this.center = [this.center[0], newY];
   }
 
-  readonly EXAMPLES: ("age")[] = [
+  readonly EXAMPLES: ("age" | "us-states")[] = [
     "age",
+    "us-states",
   ];
   selected = this.EXAMPLES[0];
 

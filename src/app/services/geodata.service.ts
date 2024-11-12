@@ -14,7 +14,7 @@ export class GeodataService {
     this.exampleEndpointUrl = location.prepareExternalUrl("data/example");
   }
 
-  getExampleGeoJsonData(name: "trees" | "earthquake" | "age"): Observable<any> {
+  getExampleGeoJsonData(name: "trees" | "earthquake" | "age" | "us-states"): Observable<any> {
     return this.getGeoJsonData(`${this.exampleEndpointUrl}/${name}.geojson`);
   }
 
