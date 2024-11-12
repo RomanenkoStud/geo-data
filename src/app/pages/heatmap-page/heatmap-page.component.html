@@ -1,4 +1,13 @@
 <app-demo-layout titleText="Heatmap component properties">
+  <div dataset>
+    <label for="dataset">Selected dataset:</label>
+    <select id="dataset" [(ngModel)]="selected" (change)="onFetchData()">
+      @for(option of EXAMPLES; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </div>
+
   <div controls>
     <div class="field">
       <label for="blur">Blur:</label>
@@ -22,15 +31,6 @@
     <div class="field">
       <label for="zoom">Zoom:</label>
       <input id="zoom" [(ngModel)]="zoom" type="text" placeholder="Enter zoom"/>
-    </div>
-
-    <div class="field">
-      <label for="dataset">Selected dataset:</label>
-      <select id="dataset" [(ngModel)]="selected" (change)="onFetchData()">
-        @for(option of EXAMPLES; track option) {
-          <option [value]="option">{{ option }}</option>
-        }
-      </select>
     </div>
   </div>
 

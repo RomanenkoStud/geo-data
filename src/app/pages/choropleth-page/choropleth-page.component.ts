@@ -26,7 +26,7 @@ const DEFAULT_VALUES: Record<("age" | "us-states"), Options> = {
       24: '#fee6ce',
     },
     center: [15, 47],
-    zoom: 3
+    zoom: 3.5
   },
   "us-states": {
     featureName: 'DENSITY',

@@ -1,10 +1,14 @@
-<div class="grid grid-cols-3 gap-4">
-  <div class="flex flex-col">
-    <h2 class="mb-4">{{ titleText }}</h2>
-    <ng-content select="[controls]"></ng-content>
-  </div>
+<div class="flex flex-col items-center gap-6">
+  <ng-content select="[dataset]"></ng-content>
 
-  <div class="col-span-2 rounded-lg shadow-md h-[70dvh]">
-    <ng-content select="[map]"></ng-content>
+  <div class="grid grid-cols-3 gap-4">
+    <div class="flex flex-col">
+      <h2 class="mb-4">{{ titleText }}</h2>
+      <ng-content select="[controls]"></ng-content>
+    </div>
+
+    <div class="col-span-2 rounded-lg shadow-md h-[70dvh]">
+      <ng-content select="[map]"></ng-content>
+    </div>
   </div>
 </div>
