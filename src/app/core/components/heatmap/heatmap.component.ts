@@ -8,6 +8,9 @@ import View from 'ol/View';
 import { Map } from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import { OSM } from 'ol/source';
+import { useGeographic } from 'ol/proj';
+
+useGeographic();
 
 @Component({
   selector: 'app-heatmap',
@@ -19,15 +22,19 @@ import { OSM } from 'ol/source';
 })
 export class HeatmapComponent implements OnChanges {
   private static readonly DEFAULT_FEATURE_PROJECTION = 'EPSG:3857';
-  private static readonly DEFAULT_DATA_PROJECTION = 'EPSG:4326';
+  private static readonly DEFAULT_DATA_PROJECTION = 'EPSG:3857';
+
+  private static readonly DEFAULT_ZOOM = 2;
+  private static readonly DEFAULT_CENTER: [number, number] = [0, 0];
 
   @Input() data?: Object = {};
   @Input() blur: number = 10;
   @Input() radius: number = 10;
 
-  @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
+  @Input() zoom: number = HeatmapComponent.DEFAULT_ZOOM;
+  @Input() center: [number, number] = HeatmapComponent.DEFAULT_CENTER;
 
-  constructor() {}
+  @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
 
   private vectorSource = new VectorSource()
 
@@ -42,8 +49,8 @@ export class HeatmapComponent implements OnChanges {
   });
 
   private view = new View({
-    center: [0, 0],
-    zoom: 2,
+    center: this.center,
+    zoom: this.zoom,
   });
 
   private map = new Map({
@@ -89,6 +96,14 @@ export class HeatmapComponent implements OnChanges {
 
     if (changes['blur'] || changes['radius']) {
       this.updateHeatmapLayer();
+    }
+
+    if (changes['zoom']) {
+      this.view.setZoom(this.zoom);
+    }
+
+    if (changes['center']) {
+      this.view.setCenter(this.center);
     }
   }
 }

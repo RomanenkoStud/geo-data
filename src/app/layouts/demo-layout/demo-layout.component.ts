@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './demo-layout.component.css'
 })
 export class DemoLayoutComponent {
-  @Input() title!: string;
+  @Input() titleText!: string;
 }

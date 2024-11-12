@@ -1,4 +1,4 @@
-<app-demo-layout title="Heatmap component properties">
+<app-demo-layout titleText="Heatmap component properties">
   <div controls>
     <div class="field">
       <label for="blur">Blur:</label>
@@ -8,6 +8,20 @@
     <div class="field">
       <label for="radius">Radius:</label>
       <input id="radius" [(ngModel)]="radius" type="range"/>
+    </div>
+
+    <div class="field">
+      <label for="centerX">Center X:</label>
+      <input id="centerX" [(ngModel)]="center[0]" (ngModelChange)="updateCenterX($event)" type="text" placeholder="Enter center x"/>
+    </div>
+    <div class="field">
+      <label for="centerY">Center Y:</label>
+      <input id="centerY" [(ngModel)]="center[1]" (ngModelChange)="updateCenterY($event)" type="text" placeholder="Enter center Y"/>
+    </div>
+
+    <div class="field">
+      <label for="zoom">Zoom:</label>
+      <input id="zoom" [(ngModel)]="zoom" type="text" placeholder="Enter zoom"/>
     </div>
 
     <div class="field">
@@ -25,5 +39,7 @@
     [data]="data"
     [blur]="blur"
     [radius]="radius"
+    [center]="center"
+    [zoom]="zoom"
   />
 </app-demo-layout>

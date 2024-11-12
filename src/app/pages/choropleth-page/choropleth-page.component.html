@@ -1,4 +1,4 @@
-<app-demo-layout title="Choropleth component properties">
+<app-demo-layout titleText="Choropleth component properties">
   <div controls>
     <div class="field">
       <label for="featureName">Feature Name:</label>
@@ -13,6 +13,20 @@
     <div class="field flex-col">
       <label for="colorMap">Color map:</label>
       <textarea id="colorMap" rows="5" [(ngModel)]="colorMapString" (ngModelChange)="onColorMapChange()"  type="text" placeholder="Enter color map"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="centerX">Center X:</label>
+      <input id="centerX" [(ngModel)]="center[0]" (ngModelChange)="updateCenterX($event)" type="text" placeholder="Enter center x"/>
+    </div>
+    <div class="field">
+      <label for="centerY">Center Y:</label>
+      <input id="centerY" [(ngModel)]="center[1]" (ngModelChange)="updateCenterY($event)" type="text" placeholder="Enter center Y"/>
+    </div>
+
+    <div class="field">
+      <label for="zoom">Zoom:</label>
+      <input id="zoom" [(ngModel)]="zoom" type="text" placeholder="Enter zoom"/>
     </div>
 
     <div class="field">
@@ -31,5 +45,7 @@
     [colorMap]="colorMap"
     [featureName]="featureName"
     [labelProperty]="labelProperty"
+    [center]="center"
+    [zoom]="zoom"
   />
 </app-demo-layout>

@@ -10,6 +10,9 @@ import TileLayer from 'ol/layer/Tile';
 import { OSM } from 'ol/source';
 import { Style, Fill, Stroke, Text } from 'ol/style';
 import { StyleFunction } from 'ol/style/Style';
+import { useGeographic } from 'ol/proj';
+
+useGeographic();
 
 @Component({
   selector: 'app-choropleth',
@@ -21,14 +24,23 @@ import { StyleFunction } from 'ol/style/Style';
 })
 export class ChoroplethComponent implements OnChanges {
   private static readonly DEFAULT_FEATURE_PROJECTION = 'EPSG:3857';
-  private static readonly DEFAULT_DATA_PROJECTION = 'EPSG:4326';
+  private static readonly DEFAULT_DATA_PROJECTION = 'EPSG:3857';
 
   private static readonly DEFAULT_FEATURE_COLOR = '#FFFFFF';
   private static readonly DEFAULT_OUTLINE_COLOR = '#000000';
   private static readonly DEFAULT_TEXT_COLOR = '#FFFFFF';
+  private static readonly DEFAULT_OUTLINE_WIDTH = 0.5;
 
+  private static readonly DEFAULT_ZOOM = 2;
+  private static readonly DEFAULT_CENTER: [number, number] = [0, 0];
+
+  @Input() defaultFeatureColor: string = ChoroplethComponent.DEFAULT_FEATURE_COLOR;
+  @Input() outlineWidth: number = ChoroplethComponent.DEFAULT_OUTLINE_WIDTH;
   @Input() outlineColor: string = ChoroplethComponent.DEFAULT_OUTLINE_COLOR;
   @Input() textColor: string = ChoroplethComponent.DEFAULT_TEXT_COLOR;
+
+  @Input() zoom: number = ChoroplethComponent.DEFAULT_ZOOM;
+  @Input() center: [number, number] = ChoroplethComponent.DEFAULT_CENTER;
 
   @Input({required: true}) featureName!: string;
   @Input({required: true}) colorMap!: { [key: number]: string };
@@ -56,7 +68,7 @@ export class ChoroplethComponent implements OnChanges {
   private styleFunction = (feature: Feature): Style[] => {
     const outline = new Stroke({
       color: this.outlineColor,
-      width: 0.7,
+      width: this.outlineWidth,
     });
     const bg = new Fill({
       color: this.mapColor(feature),
@@ -66,10 +78,10 @@ export class ChoroplethComponent implements OnChanges {
       fill: new Fill({
         color: this.textColor,
       }),
-      stroke: new Stroke({
-        color: this.outlineColor,
-        width: 2,
-      }),
+      // stroke: new Stroke({
+      //   color: this.outlineColor,
+      //   width: 2,
+      // }),
     });
     return  [
         new Style({
@@ -90,8 +102,8 @@ export class ChoroplethComponent implements OnChanges {
   });
 
   private view = new View({
-    center: [0, 0],
-    zoom: 2,
+    center: this.center,
+    zoom: this.zoom,
   });
 
   private map = new Map({
@@ -134,10 +146,22 @@ export class ChoroplethComponent implements OnChanges {
       this.updateThresholds();
     }
 
-    if (changes['colorMap'] ||
-        changes['featureName'] ||
-        changes['labelProperty']) {
+    if (changes['colorMap']
+        || changes['featureName']
+        || changes['labelProperty']
+        || changes['defaultFeatureColor']
+        || changes['outlineWidth']
+        || changes['outlineColor']
+      ) {
       this.choroplethLayer.changed();
+    }
+
+    if (changes['zoom']) {
+      this.view.setZoom(this.zoom);
+    }
+
+    if (changes['center']) {
+      this.view.setCenter(this.center);
     }
   }
 }
