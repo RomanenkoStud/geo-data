@@ -1,0 +1,57 @@
+<app-demo-layout titleText="Choropleth component properties">
+  <div controls>
+    <div class="field">
+      <label for="featureName">Feature Name:</label>
+      <input id="featureName" [(ngModel)]="featureName" type="text" placeholder="Enter feature name"/>
+    </div>
+
+    <div class="field">
+      <label for="labelProperty">Label Property:</label>
+      <input id="labelProperty" [(ngModel)]="labelProperty" type="text" placeholder="Enter label property"/>
+    </div>
+
+    <div class="field flex-col">
+      <label for="colorMap">Color map:</label>
+      <textarea id="colorMap" rows="5" [(ngModel)]="colorMapString" (ngModelChange)="onColorMapChange()"  type="text" placeholder="Enter color map"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="centerX">Center X:</label>
+      <input id="centerX" [(ngModel)]="center[0]" (ngModelChange)="updateCenterX($event)" type="text" placeholder="Enter center x"/>
+    </div>
+    <div class="field">
+      <label for="centerY">Center Y:</label>
+      <input id="centerY" [(ngModel)]="center[1]" (ngModelChange)="updateCenterY($event)" type="text" placeholder="Enter center Y"/>
+    </div>
+
+    <div class="field">
+      <label for="zoom">Zoom:</label>
+      <input id="zoom" [(ngModel)]="zoom" type="text" placeholder="Enter zoom"/>
+    </div>
+  </div>
+
+  <app-choropleth
+    map
+    [data]="data"
+    [colorMap]="colorMap"
+    [featureName]="featureName"
+    [labelProperty]="labelProperty"
+    [center]="center"
+    [zoom]="zoom"
+  />
+</app-demo-layout>
+<div class="text-blue-500" [hidden]="!time">
+  <div class="field">
+    <label for="speed">Playback Speed:</label>
+    <input type="range" id="speed" min="10" max="100" step="5" [(ngModel)]="speed" (change)="onChangeSpeed(speed)">
+    <span>{{speed}}X</span>
+  </div>
+  <div class="field">
+  <span class="mr-2">Time: {{time}}</span>
+    <button
+      [class.text-gray-300]="nextIndex !== 0"
+      [disabled]="nextIndex !== 0"
+      (click)="resumePlayback()"
+    >Resume</button>
+  </div>
+</div>
