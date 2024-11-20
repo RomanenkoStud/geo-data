@@ -1,0 +1,51 @@
+<app-demo-layout titleText="Choropleth component properties">
+  <div controls>
+    <div class="field">
+      <label for="blur">Blur:</label>
+      <input id="blur" [(ngModel)]="blur" type="range"/>
+    </div>
+
+    <div class="field">
+      <label for="radius">Radius:</label>
+      <input id="radius" [(ngModel)]="radius" type="range"/>
+    </div>
+
+    <div class="field">
+      <label for="centerX">Center X:</label>
+      <input id="centerX" [(ngModel)]="center[0]" (ngModelChange)="updateCenterX($event)" type="text" placeholder="Enter center x"/>
+    </div>
+    <div class="field">
+      <label for="centerY">Center Y:</label>
+      <input id="centerY" [(ngModel)]="center[1]" (ngModelChange)="updateCenterY($event)" type="text" placeholder="Enter center Y"/>
+    </div>
+
+    <div class="field">
+      <label for="zoom">Zoom:</label>
+      <input id="zoom" [(ngModel)]="zoom" type="text" placeholder="Enter zoom"/>
+    </div>
+  </div>
+
+  <app-heatmap
+    map
+    [data]="data"
+    [center]="center"
+    [zoom]="zoom"
+    [blur]="blur"
+    [radius]="radius"
+  />
+</app-demo-layout>
+<div class="text-blue-500" [hidden]="!time">
+  <div class="field">
+    <label for="speed">Playback Speed:</label>
+    <input type="range" id="speed" min="10" max="100" step="5" [(ngModel)]="speed" (change)="onChangeSpeed(speed)">
+    <span>{{speed}}X</span>
+  </div>
+  <div class="field">
+  <span class="mr-2">Time: {{time}}</span>
+    <button
+      [class.text-gray-300]="nextIndex !== 0"
+      [disabled]="nextIndex !== 0"
+      (click)="resumePlayback()"
+    >Resume</button>
+  </div>
+</div>

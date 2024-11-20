@@ -14,7 +14,6 @@ export class GeodataService {
     this.exampleEndpointUrl = location.prepareExternalUrl("data/example");
   }
 
-  // https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson
   getExampleGeoJsonData(name: "trees" | "earthquake" | "age" | "us-states"): Observable<any> {
     return this.getGeoJsonData(`${this.exampleEndpointUrl}/${name}.geojson`);
   }
